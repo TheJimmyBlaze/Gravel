@@ -1,20 +1,18 @@
 @use 'sass:color';
 
+@font-face {
+    font-family: RedVector;
+    src: url(Pixolletta8px.ttf);
+}
+
 $dark-shade-percentage: 100% * (1 - $btn-disabled-opacity);
 
 #root {
+    font-family: 'RedVector';
+
     background-color: $dark;
     color: $text-light;
     overflow: hidden;
-
-    --um-very-dark: #{ $very-dark }; 
-
-    --um-primary-dark: #{ mix(black, $primary, $dark-shade-percentage) };
-    --um-secondary-dark: #{ mix(black, $secondary, $dark-shade-percentage) };
-    --um-success-dark: #{ mix(black, $success, $dark-shade-percentage) };
-    --um-danger-dark: #{ mix(black, $danger, $dark-shade-percentage) };
-    --um-warning-dark: #{ mix(black, $warning, $dark-shade-percentage) };
-    --um-info-dark: #{ mix(black, $info, $dark-shade-percentage) };
 }
 
 .card-header {
