@@ -14,8 +14,7 @@ const Menu = ({
 
     return (
         <Navbar 
-            className="p-0 border-bottom border-dark" 
-            variant="dark" 
+            className="p-0 border-bottom border-dark"
             bg="secondary"
         >
         

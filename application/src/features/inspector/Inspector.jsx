@@ -6,21 +6,12 @@ const Inspector = ({
 }) => {
 
     return (
-        <div 
-            className="d-flex flex-column w-100"
-            style={{height: "320px"}}
-        >
-
-            <div className="p-2 bg-secondary">
-                <h5>
-                    Inspector
-                </h5>
-            </div>
+        <div className="d-flex flex-column w-100" style={{height: "256px"}}>
 
             <Property Key="Name" Value="Concrete Wall - Bottom" />
-            <Property Key="Id" Value="bnk_wall_conc_bottom" />
+            <Property Key="Id" Value="bnk_wall_concrete_bottom" />
             <Property Key="Sprite" Value="bnk_interior_sheet.png" />
-            <Property Key="Size" Value="32x8" />
+            <Property Key="Tags" Value="Bunker, Concrete, Wall, Bottom" />
 
         </div>
     );
