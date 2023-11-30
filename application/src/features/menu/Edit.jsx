@@ -6,7 +6,7 @@ const Edit = (
 ) => {
 
     return (
-        <NavDropdown title="Edit" menuVariant="dark">
+        <NavDropdown title="Edit">
             <NavDropdown.Item>Name</NavDropdown.Item>
             <NavDropdown.Item>Size</NavDropdown.Item>
             <NavDropdown.Item>Simulation</NavDropdown.Item>

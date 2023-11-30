@@ -6,7 +6,7 @@ const File = (
 ) => {
 
     return (
-        <NavDropdown title="File" menuVariant="dark">
+        <NavDropdown title="File">
             <NavDropdown.Item>New</NavDropdown.Item>
 
             <NavDropdown.Divider />

@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 
 import File from './File';
 import Edit from './Edit';
+import Assets from './Assets';
 import Build from './Build';
 import Description from './Description';
 
@@ -33,6 +34,7 @@ const Menu = ({
                     <Nav className="w-100">
                         <File />
                         <Edit />
+                        <Assets />
                         <Build />
 
                         <Description/>
