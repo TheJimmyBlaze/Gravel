@@ -8,7 +8,7 @@ const Inspector = ({
     return (
         <div 
             className="d-flex flex-column w-100"
-            style={{height: "256px"}}
+            style={{height: "320px"}}
         >
 
             <div className="p-2 bg-secondary">

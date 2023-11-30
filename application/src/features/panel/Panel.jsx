@@ -1,6 +1,6 @@
 
-import Inspector from '../inspector/inspector';
-import Layers from '../layers/layers';
+import Inspector from '../inspector/Inspector';
+import Layers from '../layers/Layers';
 
 const Panel = ({
 
@@ -9,7 +9,7 @@ const Panel = ({
     return (
         <div 
             className="d-flex flex-column flex-grow-1 border-end border-secondary" 
-            style={{width: "200px"}}
+            style={{width: "256px"}}
         >
             <div className="mb-auto">
                 <Layers />
