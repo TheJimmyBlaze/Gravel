@@ -3,6 +3,8 @@
 $min-contrast-ratio: 2.5;
 $progress-bar-transition: width 200ms linear;
 
+$font-size-base: 0.8rem;
+
 $yerrow: #FCA314;
 $oranger: #FC9014;
 
@@ -28,6 +30,7 @@ $light: $white;
 
 $very-dark: color.scale($dark, $lightness: -25%);
 
-$text-light: $light;
+$text-white: $gray-300;
+$text-light: $gray-600;
 $text-dark: $dark;
 $text-muted: $gray-600;

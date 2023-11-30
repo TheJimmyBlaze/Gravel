@@ -1,0 +1,14 @@
+
+
+.layer {
+    cursor: pointer;
+    transition: color 0.1s linear;
+}
+
+.layer:hover {
+    color: var(--bs-light) !important;
+}
+
+.layer.selected{
+    color: var(--bs-primary) !important;
+}

@@ -15,6 +15,14 @@ $dark-shade-percentage: 100% * (1 - $btn-disabled-opacity);
     overflow: hidden;
 }
 
+h1, h2, h3, h4, h5, p { 
+    margin: 0;
+}
+
+hr {
+    margin: 4px;
+}
+
 .card-header {
     background-color: $gray-700;
 }

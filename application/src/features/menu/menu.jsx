@@ -8,12 +8,16 @@ import Description from './Description';
 
 import gravel from '../../resources/gravel.png';
 
-const Menu = (
+const Menu = ({
 
-) => {
+}) => {
 
     return (
-        <Navbar className="p-0" variant="dark" bg="secondary">
+        <Navbar 
+            className="p-0 border-bottom border-dark" 
+            variant="dark" 
+            bg="secondary"
+        >
         
             <Container className="m-0" fluid>
                 <Navbar.Brand>

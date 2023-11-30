@@ -1,1 +1,5 @@
 @import './scss/gravel.scss';
+
+html {
+    background-color: #181a1c;
+}
