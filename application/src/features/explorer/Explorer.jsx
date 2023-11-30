@@ -8,7 +8,7 @@ const Explorer = ({
     return (
         <div className="d-flex flex-column w-100" style={{height: "256px"}}>
 
-            <div className="d-flex justify-content-between align-items-center p-2 bg-secondary">
+            <div className="d-flex justify-content-between align-items-center p-1 bg-secondary">
                 <h5>
                     {"/bunker/walls"}
                 </h5>
