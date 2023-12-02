@@ -7,7 +7,7 @@ const Assets = ({
     
     return (
         <NavDropdown title="Assets">
-            <NavDropdown.Item>Import Sheet</NavDropdown.Item>
+            <NavDropdown.Item>Import</NavDropdown.Item>
 
             <NavDropdown.Divider />
 

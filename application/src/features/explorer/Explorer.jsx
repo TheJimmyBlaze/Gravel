@@ -9,9 +9,9 @@ const Explorer = ({
         <div className="d-flex flex-column w-100" style={{height: "256px"}}>
 
             <div className="d-flex justify-content-between align-items-center p-1 bg-secondary">
-                <h5>
+                <p>
                     {"/bunker/walls"}
-                </h5>
+                </p>
 
                 <InputGroup style={{width: "400px"}}>
                     <Form.Control
