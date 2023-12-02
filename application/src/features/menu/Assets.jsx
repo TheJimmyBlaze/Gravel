@@ -1,13 +1,15 @@
 
 import { NavDropdown } from 'react-bootstrap';
 
+import Import from '../assets/Import';
+
 const Assets = ({
 
 }) => {
     
     return (
         <NavDropdown title="Assets">
-            <NavDropdown.Item>Import</NavDropdown.Item>
+            <Import />
 
             <NavDropdown.Divider />
 
