@@ -28,11 +28,11 @@ const useImport = (
     };
 
     const slicerHasDimensions = () => slicer !== slicers.interior;
+    const slicerIsAnimated = () => slicer === slicers.animatedProp;
 
     return {
         slicer,
         setSlicer,
-        slicerHasDimensions,
         dimensions: {
             x, setX,
             y, setY,
@@ -41,6 +41,8 @@ const useImport = (
             rows, setRows,
             columns, setColumns
         },
+        slicerHasDimensions,
+        slicerIsAnimated,
         clear
     };
 };

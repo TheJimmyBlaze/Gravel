@@ -13,8 +13,8 @@ const Import = ({
   const {
     slicer,
     setSlicer,
-    slicerHasDimensions,
     dimensions,
+    slicerHasDimensions,
     clear
   } = useImport();
 
@@ -37,7 +37,10 @@ const Import = ({
       >
 
         <Modal.Header>
-          <h5>Import assets from sprite sheet</h5>
+          <div className="w-100 d-flex align-items-center justify-content-between">
+            <h4>Import assets from sprite sheet</h4>
+            <Button variant="danger" onClick={handleClose}>x</Button>
+          </div>
         </Modal.Header>
         
         <Modal.Body>
@@ -155,10 +158,7 @@ const Import = ({
           <Container>
             <Row>
 
-              <Col xs={6}>
-                <Button variant="danger" onClick={handleClose}>Cancel</Button>
-              </Col>
-              
+              <Col xs={6} />
               <Col xs={6}>
                 <Button variant="primary" className="w-100" onClick={() => console.log(slicer)}>Slice</Button>
               </Col>
