@@ -32,7 +32,7 @@ const Import = ({
         backdrop="static"
         show={show} 
         onHide={handleClose} 
-        size="lg" 
+        size="lg"
         data-bs-theme="dark"
       >
 
