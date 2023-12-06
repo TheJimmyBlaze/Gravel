@@ -5,6 +5,7 @@ import { NavDropdown, Modal, Form, InputGroup, Button, Container, Row, Col } fro
 import useImport, { slicers } from './useImport';
 
 import onlyNumbers from '../../lib/onlyNumbers';
+import SlicePreview from './SlicePreview';
 
 const Import = ({
 
@@ -140,12 +141,7 @@ const Import = ({
               <Col xs={12} className="p-2"/>
 
               <Col xs={12}>
-
-                <div style={{height: '512px'}} className="d-flex flex-grow-1 justify-content-center">
-                    <canvas 
-                        style={{backgroundColor: "Maroon"}}
-                    />
-                </div>
+                  <SlicePreview />
               </Col>
             </Row>
           </Container>

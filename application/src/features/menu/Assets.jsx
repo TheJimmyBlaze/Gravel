@@ -1,7 +1,7 @@
 
 import { NavDropdown } from 'react-bootstrap';
 
-import Import from '../assets/Import';
+import Import from '../import/Import';
 
 const Assets = ({
 
