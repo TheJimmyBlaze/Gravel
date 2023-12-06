@@ -16,14 +16,15 @@ $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
 $gray-1000: #181a1c;
+$gray-1200: #131313;
 $white: $gray-200;
-$black: $gray-1000;
+$black: $gray-1200;
 
 $primary: $yerrow;
 $secondary: $gray-900;
 $warning: $oranger;
 
-$dark: $black;
+$dark: $gray-1000;
 $light: $white;
 
 $very-dark: color.scale($dark, $lightness: -25%);

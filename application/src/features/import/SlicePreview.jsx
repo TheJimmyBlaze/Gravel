@@ -2,43 +2,67 @@
 import { useRef, useCallback, useEffect } from 'react';
 
 const SlicePreview = ({
-
+    slicer
 }) => {
 
     const canvasRef = useRef();
 
+    const drawPreview = useCallback(canvas => {
+
+        const ctx = canvas.getContext('2d');
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = ctx.strokeStyle = '#FCA314';
+
+        const scale = 4;
+        ctx.translate(
+            canvas.width / 2 - slicer.dimensions.width * scale / 2, 
+            canvas.height / 2 - slicer.dimensions.height * scale / 2
+        );
+        ctx.scale(scale, scale);
+
+        slicer.drawPreview(ctx);
+
+        ctx.stroke();
+
+        console.log('ding');
+    }, [
+        slicer
+    ]);
+
     const resizeToParent = useCallback(() => {
 
         const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
+        if (!canvas) return;
 
         const parentWidth = canvas.parentElement.clientWidth;
         const parentHeight = canvas.parentElement.clientHeight;
 
-        ctx.width = parentWidth;
-        ctx.height = parentHeight;
+        canvas.width = parentWidth;
+        canvas.height = parentHeight;
         canvas.style = `width:${parentWidth}px;height:${parentHeight}px;`;
 
-        console.log(`${ctx.width}, ${ctx.height}`);
+        drawPreview(canvas);
     }, [
-        canvasRef
+        slicer,
+        canvasRef,
+        drawPreview
     ]);
 
     useEffect(() => {
 
         resizeToParent();
     }, [
-        resizeToParent
+        resizeToParent,
     ]);
 
     window.addEventListener('resize', () => resizeToParent());
 
     return (
 
-        <div style={{height: '320px', backgroundColor: "Maroon"}} className="d-flex flex-grow-1">
-            <canvas 
-                ref={canvasRef}
-            />
+        <div style={{height: '320px'}} className="d-flex flex-grow-1 bg-dark">
+            <canvas ref={canvasRef}/>
         </div>
     );
 };

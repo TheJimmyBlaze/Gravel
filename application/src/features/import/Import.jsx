@@ -13,7 +13,7 @@ const Import = ({
 
   const {
     slicer,
-    setSlicer,
+    setSlicerByName,
     dimensions,
     slicerHasDimensions,
     clear
@@ -53,12 +53,12 @@ const Import = ({
               <Col xs={12}>
 
                 <Form.Select
-                  onChange={e => setSlicer(e.target.value)}
-                  value={slicer}
+                  onChange={e => setSlicerByName(e.target.value)}
+                  value={slicer.name}
                 >
-                  <option value={slicers.prop}>Prop slicer</option>
-                  <option value={slicers.animatedProp}>Animated prop slicer</option>
-                  <option value={slicers.interior}>Interior slicer</option>
+                  {/* <option value={slicers.prop.name}>Prop slicer</option>
+                  <option value={slicers.animatedProp.name}>Animated prop slicer</option> */}
+                  <option value={slicers.interior.name}>Interior slicer</option>
                 </Form.Select>
               </Col>
 
@@ -141,7 +141,7 @@ const Import = ({
               <Col xs={12} className="p-2"/>
 
               <Col xs={12}>
-                  <SlicePreview />
+                  <SlicePreview slicer={slicer}/>
               </Col>
             </Row>
           </Container>

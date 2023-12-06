@@ -1,17 +1,20 @@
 
 import { useState } from 'react';
+import useInteriorSlicer from './useInteriorSlicer';
 
 export const slicers = {
-    prop: 'slicer_prop',
-    animatedProp: 'slicer_prop_animated',
-    interior: 'slicer_interior'
+    //prop: 'slicer_prop',
+    //animatedProp: 'slicer_prop_animated',
+    interior: useInteriorSlicer()
 };
 
 const useImport = (
 
 ) => {
 
-    const [slicer, setSlicer] = useState(slicers.prop);
+    const [slicer, setSlicer] = useState(slicers.interior);
+
+    const setSlicerByName = name => setSlicer(slicers.first(slicer => slicer.name === name));
     
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
@@ -32,7 +35,7 @@ const useImport = (
 
     return {
         slicer,
-        setSlicer,
+        setSlicerByName,
         dimensions: {
             x, setX,
             y, setY,
