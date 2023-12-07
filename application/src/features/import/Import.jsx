@@ -54,7 +54,7 @@ const Import = ({
 
                 <Form.Select
                   onChange={e => setSlicerByName(e.target.value)}
-                  value={slicer.name}
+                  value={slicer?.name}
                 >
                   {/* <option value={slicers.prop.name}>Prop slicer</option>
                   <option value={slicers.animatedProp.name}>Animated prop slicer</option> */}

@@ -9,6 +9,8 @@ const SlicePreview = ({
 
     const drawPreview = useCallback(canvas => {
 
+        if (!slicer) return;
+
         const ctx = canvas.getContext('2d');
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -25,8 +27,6 @@ const SlicePreview = ({
         slicer.drawPreview(ctx);
 
         ctx.stroke();
-
-        console.log('ding');
     }, [
         slicer
     ]);
