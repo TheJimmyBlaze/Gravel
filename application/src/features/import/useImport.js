@@ -1,6 +1,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import useInteriorSlicer from './useInteriorSlicer';
+import useDimensions from './useDimensions';
 
 export const slicers = {
     //prop: 'slicer_prop',
@@ -25,35 +26,24 @@ const useImport = (
     const [slicer, setSlicer] = useState();
 
     const setSlicerByName = name => setSlicer(slicers.first(slicer => slicer.name === name));
-    
-    const [x, setX] = useState();
-    const [y, setY] = useState();
-    const [width, setWidth] = useState();
-    const [height, setHeight] = useState();
-    const [rows, setRows] = useState();
-    const [columns, setColumns] = useState();
+
+    const dimensions = useDimensions();
 
     const clear = useCallback(() => {
+
         setSpriteUrl(null);
         setSlicer(slicers.interior);
-        setX(0); setY(0);
-        setWidth(16); setHeight(16);
-        setRows(1); setColumns(1);
+
+        dimensions.clear();
     }, [
         setSpriteUrl,
         setSlicer,
         slicers,
-        setX, setY,
-        setWidth, setHeight,
-        setRows, setColumns
     ]);
 
     useEffect(() => {
         clear();
     }, [ clear ]); 
-
-    const slicerHasDimensions = () => slicer !== slicers.interior;
-    const slicerIsAnimated = () => slicer === slicers.animatedProp;
 
     return {
         stage,
@@ -63,16 +53,7 @@ const useImport = (
         setSpriteUrl,
         slicer,
         setSlicerByName,
-        dimensions: {
-            x, setX,
-            y, setY,
-            width, setWidth,
-            height, setHeight,
-            rows, setRows,
-            columns, setColumns
-        },
-        slicerHasDimensions,
-        slicerIsAnimated,
+        dimensions,
         clear
     };
 };

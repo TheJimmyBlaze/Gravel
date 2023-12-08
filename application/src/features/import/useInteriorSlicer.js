@@ -10,6 +10,11 @@ const useInteriorSlicer = () => {
         height: 64
     };
 
+    const hasDimensions = false;
+    const hasRows = false;
+    const hasColumns = false;
+    const isAnimated = false;
+
     const slices = [
         makeSlice('top_left_inner', 16, 8, 8, 8),
         makeSlice('top_single', 24, 8, 16, 40),
@@ -31,16 +36,20 @@ const useInteriorSlicer = () => {
         makeSlice('bottom_double', 80, 48, 32, 8)
     ];
 
-    const drawPreview = ctx => {
+    const drawPreview = (ctx, dimensions) => {
 
         slices.forEach(slice => {
-            ctx.rect(slice.x, slice.y, slice.width, slice.height);
+            ctx.rect(slice.x + dimensions.x, slice.y + dimensions.y, slice.width, slice.height);
         });
     };
 
     return {
         name,
         dimensions,
+        hasDimensions,
+        hasRows,
+        hasColumns,
+        isAnimated,
         drawPreview
     };
 };

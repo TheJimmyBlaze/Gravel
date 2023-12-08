@@ -3,6 +3,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 
 const SlicePreview = ({
     spriteUrl,
+    dimensions,
     slicer
 }) => {
 
@@ -28,7 +29,7 @@ const SlicePreview = ({
 
     const drawPreview = useCallback(canvas => {
 
-        if (!slicer || !sprite) return;
+        if (!slicer || !sprite || !dimensions) return;
 
         //Setup
         const ctx = canvas.getContext('2d');
@@ -39,8 +40,8 @@ const SlicePreview = ({
 
         const scale = 4;
         ctx.translate(
-            canvas.width / 2 - slicer.dimensions.width * scale / 2, 
-            canvas.height / 2 - slicer.dimensions.height * scale / 2
+            (canvas.width / 2) - (slicer.dimensions.width * scale / 2) - (dimensions.x * scale), 
+            (canvas.height / 2) - (slicer.dimensions.height * scale / 2) - (dimensions.y * scale)
         );
         ctx.scale(scale, scale);
 
@@ -48,10 +49,11 @@ const SlicePreview = ({
         ctx.drawImage(sprite, 0, 0);
 
         //Draw slicer
-        slicer.drawPreview(ctx);
+        slicer.drawPreview(ctx, dimensions);
         ctx.stroke();
     }, [
         sprite,
+        dimensions,
         slicer
     ]);
 
