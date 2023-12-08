@@ -13,7 +13,13 @@ const Import = ({
   const importer = useImport();
 
   const [show, setShow] = useState(false);
-  const handleClose = () => { importer.clear(); setShow(false); }
+  const handleClose = () => { 
+
+    if (importer.stage === stages.configure) return importer.goSlice(); 
+
+    importer.clear();
+    setShow(false);
+  }
   const handleShow = () => setShow(true);
 
   const renderStage = () => {
