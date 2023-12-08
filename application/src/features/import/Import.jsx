@@ -12,6 +12,8 @@ const Import = ({
 }) => {
 
   const {
+    spriteUrl,
+    setSpriteUrl,
     slicer,
     setSlicerByName,
     dimensions,
@@ -47,7 +49,15 @@ const Import = ({
 
             <Row className="g-2">
               <Col xs={12}>
-                <Form.Control type="file"/>
+                <Form.Control 
+                  type="file"
+                  onChange={e => {
+                    if (!e.target.files || e.target.files.length === 0) {
+                      return setSpriteUrl(null);
+                    }
+                    setSpriteUrl(e.target.files[0]);
+                  }}
+                />
               </Col>
 
               <Col xs={12}>
@@ -141,7 +151,10 @@ const Import = ({
               <Col xs={12} className="p-2"/>
 
               <Col xs={12}>
-                  <SlicePreview slicer={slicer}/>
+                  <SlicePreview 
+                    spriteUrl={spriteUrl}
+                    slicer={slicer}
+                  />
               </Col>
             </Row>
           </Container>

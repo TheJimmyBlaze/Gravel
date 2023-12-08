@@ -1,20 +1,40 @@
 
-import { useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 const SlicePreview = ({
+    spriteUrl,
     slicer
 }) => {
 
+    const [sprite, setSprite] = useState();
+
     const canvasRef = useRef();
+    
+    useEffect(() => {
+
+        if (!spriteUrl) return setSprite(null);
+
+        const imageUrl = URL.createObjectURL(spriteUrl)
+
+        const image = new Image();
+        image.src = imageUrl;
+        image.onload = () => setSprite(image);
+
+        return () => URL.revokeObjectURL(imageUrl)
+    }, [
+        spriteUrl,
+        setSprite
+    ]);
 
     const drawPreview = useCallback(canvas => {
 
-        if (!slicer) return;
+        if (!slicer || !sprite) return;
 
+        //Setup
         const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
         ctx.fillStyle = ctx.strokeStyle = '#FCA314';
 
         const scale = 4;
@@ -24,10 +44,14 @@ const SlicePreview = ({
         );
         ctx.scale(scale, scale);
 
-        slicer.drawPreview(ctx);
+        //Draw image
+        ctx.drawImage(sprite, 0, 0);
 
+        //Draw slicer
+        slicer.drawPreview(ctx);
         ctx.stroke();
     }, [
+        sprite,
         slicer
     ]);
 

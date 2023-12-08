@@ -12,6 +12,7 @@ const useImport = (
 
 ) => {
 
+    const [spriteUrl, setSpriteUrl] = useState();
     const [slicer, setSlicer] = useState(slicers.interior);
 
     const setSlicerByName = name => setSlicer(slicers.first(slicer => slicer.name === name));
@@ -34,6 +35,8 @@ const useImport = (
     const slicerIsAnimated = () => slicer === slicers.animatedProp;
 
     return {
+        spriteUrl,
+        setSpriteUrl,
         slicer,
         setSlicerByName,
         dimensions: {
