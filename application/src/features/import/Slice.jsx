@@ -10,15 +10,6 @@ const Slice = ({
     importer
 }) => {
 
-    const {
-        spriteUrl,
-        setSpriteUrl,
-        slicer,
-        setSlicerByName,
-        dimensions,
-        slicerHasDimensions
-    } = importer;
-
     return (
         <Container fluid>
 
@@ -28,9 +19,9 @@ const Slice = ({
                     type="file"
                     onChange={e => {
                         if (!e.target.files || e.target.files.length === 0) {
-                            return setSpriteUrl(null);
+                            return importer.setSpriteUrl(null);
                         }
-                        setSpriteUrl(e.target.files[0]);
+                        importer.setSpriteUrl(e.target.files[0]);
                     }}
                 />
                 </Col>
@@ -38,8 +29,8 @@ const Slice = ({
                 <Col xs={12}>
 
                 <Form.Select
-                    onChange={e => setSlicerByName(e.target.value)}
-                    value={slicer?.name}
+                    onChange={e => importer.setSlicerByName(e.target.value)}
+                    value={importer.slicer?.name}
                 >
                     {/* <option value={slicers.prop.name}>Prop slicer</option>
                     <option value={slicers.animatedProp.name}>Animated prop slicer</option> */}
@@ -55,8 +46,8 @@ const Slice = ({
                     <Form.Control
                     type="number"
                     onKeyDown={e => onlyNumbers(e)}
-                    onChange={e => dimensions.setX(e.target.value)}
-                    value={dimensions.x}
+                    onChange={e => importer.dimensions.setX(e.target.value)}
+                    value={importer.dimensions.x}
                     />
                 </InputGroup>
                 </Col>
@@ -67,8 +58,8 @@ const Slice = ({
                     <Form.Control
                     type="number"
                     onKeyDown={e => onlyNumbers(e)}
-                    onChange={e => dimensions.setY(e.target.value)}
-                    value={dimensions.y}
+                    onChange={e => importer.dimensions.setY(e.target.value)}
+                    value={importer.dimensions.y}
                     />
                 </InputGroup>
                 </Col>
@@ -79,9 +70,9 @@ const Slice = ({
                     <Form.Control
                     type="number"
                     onKeyDown={e => onlyNumbers(e)}
-                    onChange={e => dimensions.setWidth(e.target.value)}
-                    value={dimensions.width}
-                    disabled={!slicerHasDimensions()}
+                    onChange={e => importer.dimensions.setWidth(e.target.value)}
+                    value={importer.dimensions.width}
+                    disabled={!importer.slicerHasDimensions()}
                     />
                 </InputGroup>
                 </Col>
@@ -92,9 +83,9 @@ const Slice = ({
                     <Form.Control
                     type="number"
                     onKeyDown={e => onlyNumbers(e)}
-                    onChange={e => dimensions.setHeight(e.target.value)}
-                    value={dimensions.height}
-                    disabled={!slicerHasDimensions()}
+                    onChange={e => importer.dimensions.setHeight(e.target.value)}
+                    value={importer.dimensions.height}
+                    disabled={!importer.slicerHasDimensions()}
                     />
                 </InputGroup>
                 </Col>
@@ -105,8 +96,8 @@ const Slice = ({
                     <Form.Control
                     type="number"
                     onKeyDown={e => onlyNumbers(e)}
-                    onChange={e => dimensions.setRows(e.target.value)}
-                    value={dimensions.rows}
+                    onChange={e => importer.dimensions.setRows(e.target.value)}
+                    value={importer.dimensions.rows}
                     />
                 </InputGroup>
                 </Col>
@@ -117,8 +108,8 @@ const Slice = ({
                     <Form.Control
                     type="number"
                     onKeyDown={e => onlyNumbers(e)}
-                    onChange={e => dimensions.setColumns(e.target.value)}
-                    value={dimensions.columns}
+                    onChange={e => importer.dimensions.setColumns(e.target.value)}
+                    value={importer.dimensions.columns}
                     />
                 </InputGroup>
                 </Col>
@@ -127,8 +118,8 @@ const Slice = ({
 
                 <Col xs={12}>
                     <SlicePreview 
-                    spriteUrl={spriteUrl}
-                    slicer={slicer}
+                    spriteUrl={importer.spriteUrl}
+                    slicer={importer.slicer}
                     />
                 </Col>
             </Row>

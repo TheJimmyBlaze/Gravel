@@ -11,41 +11,35 @@ const Import = ({
 }) => {
 
   const importer = useImport();
-  const {
-    stage,
-    goConfigure,
-    goSlice,
-    clear
-  } = importer;
 
   const [show, setShow] = useState(false);
-  const handleClose = () => { clear(); setShow(false); }
+  const handleClose = () => { importer.clear(); setShow(false); }
   const handleShow = () => setShow(true);
 
   const renderStage = () => {
 
-    if (stage === stages.slice) return <Slice importer={importer} />
-    if (stage === stages.configure) return <Configure importer={importer} />
+    if (importer.stage === stages.slice) return <Slice importer={importer} />
+    if (importer.stage === stages.configure) return <Configure importer={importer} />
   };
 
   const renderBackButton = () => {
 
-    if (stage === stages.slice) return (
+    if (importer.stage === stages.slice) return (
       <Button variant="danger" onClick={handleClose}>Cancel</Button>
     );
 
-    if (stage === stages.configure) return (
-      <Button variant="danger" onClick={goSlice}>Back</Button>
+    if (importer.stage === stages.configure) return (
+      <Button variant="danger" onClick={importer.goSlice}>Back</Button>
     );
   };
 
   const renderNextButton = () => {
     
-    if (stage === stages.slice) return (
-      <Button variant="primary" className="w-100" onClick={goConfigure}>Slice</Button>
+    if (importer.stage === stages.slice) return (
+      <Button variant="primary" className="w-100" onClick={importer.goConfigure}>Slice</Button>
     );
 
-    if (stage === stages.configure) return (
+    if (importer.stage === stages.configure) return (
       <Button variant="primary" className="w-100">Import</Button>
     );
   };
