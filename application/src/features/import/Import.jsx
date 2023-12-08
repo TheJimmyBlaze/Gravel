@@ -2,18 +2,53 @@
 import { useState } from 'react';
 import { NavDropdown, Modal, Form, InputGroup, Button, Container, Row, Col } from 'react-bootstrap';
 
-import useImport from './useImport';
+import useImport, { stages } from './useImport';
 import Slice from './Slice';
+import Configure from './Configure';
 
 const Import = ({
 
 }) => {
 
   const importer = useImport();
+  const {
+    stage,
+    goConfigure,
+    goSlice,
+    clear
+  } = importer;
 
   const [show, setShow] = useState(false);
   const handleClose = () => { clear(); setShow(false); }
   const handleShow = () => setShow(true);
+
+  const renderStage = () => {
+
+    if (stage === stages.slice) return <Slice importer={importer} />
+    if (stage === stages.configure) return <Configure importer={importer} />
+  };
+
+  const renderBackButton = () => {
+
+    if (stage === stages.slice) return (
+      <Button variant="danger" onClick={handleClose}>Cancel</Button>
+    );
+
+    if (stage === stages.configure) return (
+      <Button variant="danger" onClick={goSlice}>Back</Button>
+    );
+  };
+
+  const renderNextButton = () => {
+    
+    if (stage === stages.slice) return (
+      <Button variant="primary" className="w-100" onClick={goConfigure}>Slice</Button>
+    );
+
+    if (stage === stages.configure) return (
+      <Button variant="primary" className="w-100">Import</Button>
+    );
+  };
 
   return (
     <>
@@ -34,9 +69,7 @@ const Import = ({
         </Modal.Header>
 
         <Modal.Body>
-          <Slice 
-            importer={importer}
-          />
+          { renderStage() }
         </Modal.Body>
 
         <Modal.Footer className="d-flex justify-content-between">
@@ -44,10 +77,10 @@ const Import = ({
             <Row>
 
               <Col xs={6}>
-                <Button variant="danger" onClick={handleClose}>Cancel</Button>
+                { renderBackButton() }
               </Col>
               <Col xs={6}>
-                <Button variant="primary" className="w-100" onClick={() => console.log(importer.slicer)}>Slice</Button>
+                { renderNextButton() }
               </Col>
             </Row>
           </Container>

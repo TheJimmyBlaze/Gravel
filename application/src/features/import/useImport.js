@@ -8,9 +8,18 @@ export const slicers = {
     interior: useInteriorSlicer()
 };
 
+export const stages = {
+    slice: 'import_stage_slice',
+    configure: 'import_stage_configure'
+};
+
 const useImport = (
 
 ) => {
+
+    const [stage, setStage] = useState(stages.slice);
+    const goConfigure = () => setStage(stages.configure);
+    const goSlice = () => setStage(stages.slice);
 
     const [spriteUrl, setSpriteUrl] = useState();
     const [slicer, setSlicer] = useState(slicers.interior);
@@ -35,6 +44,9 @@ const useImport = (
     const slicerIsAnimated = () => slicer === slicers.animatedProp;
 
     return {
+        stage,
+        goConfigure,
+        goSlice,
         spriteUrl,
         setSpriteUrl,
         slicer,

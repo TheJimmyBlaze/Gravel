@@ -16,8 +16,7 @@ const Slice = ({
         slicer,
         setSlicerByName,
         dimensions,
-        slicerHasDimensions,
-        clear
+        slicerHasDimensions
     } = importer;
 
     return (
