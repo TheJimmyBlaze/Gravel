@@ -1,5 +1,5 @@
 
-import { Container, Row, Col, InputGroup, Form, Carousel } from 'react-bootstrap';
+import { Container, Row, Col, InputGroup, Form, Badge } from 'react-bootstrap';
 import onlyNumbers from '../../lib/onlyNumbers';
 import AssetPreview from './AssetPreview';
 
@@ -15,11 +15,22 @@ const Configure = ({
                     Sprite <span className="text-primary">{1}</span>{` of ${importer.slicer.slices.length}`}
                 </Col>
 
-                <Col xs={12}>
+                <Col xs={6}>
                     <InputGroup>
                         <InputGroup.Text>Name</InputGroup.Text>
                         <Form.Control
                             type="text"
+                            placeholder="Red Vector"
+                        />
+                    </InputGroup>
+                </Col>
+
+                <Col xs={6}>
+                    <InputGroup>
+                        <InputGroup.Text>Id</InputGroup.Text>
+                        <Form.Control
+                            type="text"
+                            placeholder="red_vector"
                         />
                     </InputGroup>
                 </Col>
@@ -29,6 +40,7 @@ const Configure = ({
                         <InputGroup.Text>Tags</InputGroup.Text>
                         <Form.Control
                             type="text"
+                            placeholder="red, vector"
                         />
                     </InputGroup>
                 </Col>
@@ -42,6 +54,12 @@ const Configure = ({
                             disabled={!importer.slicer.isAnimated}
                         />
                     </InputGroup>
+                </Col>
+
+                <Col xs={12}>
+                    {
+                        
+                    }
                 </Col>
 
                 <Col xs={12}>
