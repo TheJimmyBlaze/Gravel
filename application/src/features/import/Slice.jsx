@@ -15,105 +15,104 @@ const Slice = ({
 
             <Row className="g-2">
                 <Col xs={12}>
-                <Form.Control 
-                    type="file"
-                    onChange={e => {
-                        if (!e.target.files || e.target.files.length === 0) {
-                            return importer.setSpriteUrl(null);
-                        }
-                        importer.setSpriteUrl(e.target.files[0]);
-                    }}
-                />
+                    <Form.Control 
+                        type="file"
+                        onChange={e => {
+                            if (!e.target.files || e.target.files.length === 0) {
+                                return importer.setSpriteUrl(null);
+                            }
+                            importer.setSpriteUrl(e.target.files[0]);
+                        }}
+                    />
                 </Col>
 
                 <Col xs={12}>
-
-                <Form.Select
-                    onChange={e => importer.setSlicerByName(e.target.value)}
-                    value={importer.slicer?.name}
-                >
-                    {/* <option value={slicers.prop.name}>Prop slicer</option>
-                    <option value={slicers.animatedProp.name}>Animated prop slicer</option> */}
-                    <option value={slicers.interior.name}>Interior slicer</option>
-                </Form.Select>
+                    <Form.Select
+                        onChange={e => importer.setSlicerByName(e.target.value)}
+                        value={importer.slicer?.name}
+                    >
+                        {/* <option value={slicers.prop.name}>Prop slicer</option>
+                        <option value={slicers.animatedProp.name}>Animated prop slicer</option> */}
+                        <option value={slicers.interior.name}>Interior slicer</option>
+                    </Form.Select>
                 </Col>
 
                 <Col xs={12} className="p-2"/>
 
                 <Col xs={3}>
-                <InputGroup>
-                    <InputGroup.Text>x</InputGroup.Text>
-                    <Form.Control
-                        type="number"
-                        onKeyDown={e => onlyNumbers(e)}
-                        onChange={e => importer.dimensions.setX(e.target.value)}
-                        value={importer.dimensions.x}
-                    />
-                </InputGroup>
+                    <InputGroup>
+                        <InputGroup.Text>x</InputGroup.Text>
+                        <Form.Control
+                            type="number"
+                            onKeyDown={e => onlyNumbers(e)}
+                            onChange={e => importer.dimensions.setX(e.target.value)}
+                            value={importer.dimensions.x}
+                        />
+                    </InputGroup>
                 </Col>
 
                 <Col xs={3}>
-                <InputGroup>
-                    <InputGroup.Text>y</InputGroup.Text>
-                    <Form.Control
-                        type="number"
-                        onKeyDown={e => onlyNumbers(e)}
-                        onChange={e => importer.dimensions.setY(e.target.value)}
-                        value={importer.dimensions.y}
-                    />
-                </InputGroup>
+                    <InputGroup>
+                        <InputGroup.Text>y</InputGroup.Text>
+                        <Form.Control
+                            type="number"
+                            onKeyDown={e => onlyNumbers(e)}
+                            onChange={e => importer.dimensions.setY(e.target.value)}
+                            value={importer.dimensions.y}
+                        />
+                    </InputGroup>
                 </Col>
 
                 <Col xs={3}>
-                <InputGroup>
-                    <InputGroup.Text>w</InputGroup.Text>
-                    <Form.Control
-                        type="number"
-                        onKeyDown={e => onlyNumbers(e)}
-                        onChange={e => importer.dimensions.setWidth(e.target.value)}
-                        value={importer.dimensions.width}
-                        disabled={!importer.slicer.hasDimensions}
-                    />
-                </InputGroup>
+                    <InputGroup>
+                        <InputGroup.Text>w</InputGroup.Text>
+                        <Form.Control
+                            type="number"
+                            onKeyDown={e => onlyNumbers(e)}
+                            onChange={e => importer.dimensions.setWidth(e.target.value)}
+                            value={importer.dimensions.width}
+                            disabled={!importer.slicer.hasDimensions}
+                        />
+                    </InputGroup>
                 </Col>
 
                 <Col xs={3}>
-                <InputGroup>
-                    <InputGroup.Text>h</InputGroup.Text>
-                    <Form.Control
-                        type="number"
-                        onKeyDown={e => onlyNumbers(e)}
-                        onChange={e => importer.dimensions.setHeight(e.target.value)}
-                        value={importer.dimensions.height}
-                        disabled={!importer.slicer.hasDimensions}
-                    />
-                </InputGroup>
+                    <InputGroup>
+                        <InputGroup.Text>h</InputGroup.Text>
+                        <Form.Control
+                            type="number"
+                            onKeyDown={e => onlyNumbers(e)}
+                            onChange={e => importer.dimensions.setHeight(e.target.value)}
+                            value={importer.dimensions.height}
+                            disabled={!importer.slicer.hasDimensions}
+                        />
+                    </InputGroup>
                 </Col>
 
                 <Col xs={6}>
-                <InputGroup>
-                    <InputGroup.Text>rows</InputGroup.Text>
-                    <Form.Control
-                        type="number"
-                        onKeyDown={e => onlyNumbers(e)}
-                        onChange={e => importer.dimensions.setRows(e.target.value)}
-                        value={importer.dimensions.rows}
-                        disabled={!importer.slicer.hasRows}
-                    />
-                </InputGroup>
+                    <InputGroup>
+                        <InputGroup.Text>rows</InputGroup.Text>
+                        <Form.Control
+                            type="number"
+                            onKeyDown={e => onlyNumbers(e)}
+                            onChange={e => importer.dimensions.setRows(e.target.value)}
+                            value={importer.dimensions.rows}
+                            disabled={!importer.slicer.hasRows}
+                        />
+                    </InputGroup>
                 </Col>
                 
                 <Col xs={6}>
-                <InputGroup>
-                    <InputGroup.Text>columns</InputGroup.Text>
-                    <Form.Control
-                        type="number"
-                        onKeyDown={e => onlyNumbers(e)}
-                        onChange={e => importer.dimensions.setColumns(e.target.value)}
-                        value={importer.dimensions.columns}
-                        disabled={!importer.slicer.hsColumns}
-                    />
-                </InputGroup>
+                    <InputGroup>
+                        <InputGroup.Text>columns</InputGroup.Text>
+                        <Form.Control
+                            type="number"
+                            onKeyDown={e => onlyNumbers(e)}
+                            onChange={e => importer.dimensions.setColumns(e.target.value)}
+                            value={importer.dimensions.columns}
+                            disabled={!importer.slicer.hsColumns}
+                        />
+                    </InputGroup>
                 </Col>
 
                 <Col xs={12} className="p-2"/>

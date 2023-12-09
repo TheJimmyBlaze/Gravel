@@ -42,7 +42,14 @@ const Import = ({
   const renderNextButton = () => {
     
     if (importer.stage === stages.slice) return (
-      <Button variant="primary" className="w-100" onClick={importer.goConfigure}>Slice</Button>
+      <Button 
+        variant="primary" 
+        className="w-100" 
+        onClick={importer.goConfigure}
+        disabled={!importer.spriteUrl}
+      >
+        Slice
+      </Button>
     );
 
     if (importer.stage === stages.configure) return (

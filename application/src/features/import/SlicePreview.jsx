@@ -77,7 +77,6 @@ const SlicePreview = ({
     ]);
 
     useEffect(() => {
-
         resizeToParent();
     }, [
         resizeToParent,
