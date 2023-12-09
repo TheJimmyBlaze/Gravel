@@ -45,6 +45,7 @@ const useInteriorSlicer = () => {
 
     return {
         name,
+        slices,
         dimensions,
         hasDimensions,
         hasRows,

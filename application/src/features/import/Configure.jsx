@@ -12,7 +12,7 @@ const Configure = ({
             <Row className="g-2">
 
                 <Col xs={12} className="text-end">
-                    Sprite <span className="text-primary">{1}</span>{` of ${1}`}
+                    Sprite <span className="text-primary">{1}</span>{` of ${importer.slicer.slices.length}`}
                 </Col>
 
                 <Col xs={12}>
