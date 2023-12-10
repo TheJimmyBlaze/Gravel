@@ -23,6 +23,7 @@ const Slice = ({
                             }
                             importer.setSpriteUrl(e.target.files[0]);
                         }}
+                        isInvalid={!importer.spriteUrl}
                     />
                 </Col>
 
