@@ -12,31 +12,19 @@ const Configure = ({
     const config = useConfig(
         importer.dimensions.x, importer.dimensions.y,
         importer.slicer.slices[index],
-        importer.spriteUrl
-    )
+        importer.spriteUrl,
+        asset => importer.updateAsset(index, asset)
+    );
 
     return (
-        <Container>
+        <Container className="mb-2">
             <Row className="g-2">
 
                 <Col xs={12} className="text-end">
-                    Sprite <span className="text-primary">{index + 1}</span>{` of ${importer.slicer.slices.length}`}
+                    Asset <span className="text-primary">{index + 1}</span>{` of ${importer.slicer.slices.length}`}
                 </Col>
 
-                <Col xs={6}>
-                    <InputGroup>
-                        <InputGroup.Text>Name</InputGroup.Text>
-                        <Form.Control
-                            type="text"
-                            placeholder="Missing Name"
-                            onChange={e => config.setName(e.target.value)}
-                            value={config.name}
-                            isInvalid={!config.name.trim()}
-                        />
-                    </InputGroup>
-                </Col>
-
-                <Col xs={6}>
+                <Col xs={12}>
                     <InputGroup>
                         <InputGroup.Text>Id</InputGroup.Text>
                         <Form.Control
@@ -76,14 +64,17 @@ const Configure = ({
 
                 <Col xs={12}>
                     {
-                        config.tags.map(tag => (
-                            <Badge bg="info" className="me-2">{tag}</Badge>
+                        config.tags.map((tag, index) => (
+                            <Badge key={index} bg="info" className="me-2">{tag}</Badge>
                         ))
                     }
                 </Col>
 
                 <Col xs={12}>
-                    <AssetPreview />
+                    <AssetPreview
+                        spriteUrl={importer.spriteUrl}
+                        dimensions={config.dimensions}
+                    />
                 </Col>
             </Row>
         </Container>

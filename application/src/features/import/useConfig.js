@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 const useConfig = (
     x, y,
     slice,
-    spriteUrl
+    spriteUrl,
+    updateAsset
 ) => {
 
-    const [name, setName] = useState('');
     const [id, setId] = useState('');
     const [frames, setFrames] = useState(1);
 
@@ -21,9 +21,11 @@ const useConfig = (
         height: slice.height
     };
 
-    const valid = () => (name.trim() && id.trim());
+    const update = callback => {
+        callback();
+        updateAsset(createAsset());
+    };
     const createAsset = () => ({
-        name,
         id,
         frames,
         tags,
@@ -52,14 +54,12 @@ const useConfig = (
     ]);
 
     return {
-        name, setName,
-        id, setId,
-        frames, setFrames,
-        tagString, setTagString,
+        id, setId: id => update(() => setId(id)),
+        frames, setFrames: frames => update(() => setFrames(frames)),
+        tagString, setTagString: tagString => update(() => setTagString(tagString)),
         tags,
         dimensions,
         spriteUrl,
-        valid,
         createAsset
     };
 };

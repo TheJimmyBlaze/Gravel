@@ -25,7 +25,15 @@ const Import = ({
   const renderStage = () => {
 
     if (importer.stage === stages.slice) return <Slice importer={importer} />
-    if (importer.stage === stages.configure) return <Configure index={0} importer={importer} />
+    if (importer.stage === stages.configure) return (
+      importer.slicer.slices.map((_, index) => (
+        <Configure
+          key={index}
+          index={index}
+          importer={importer}
+        />
+      ))
+    )
   };
 
   const renderBackButton = () => {
@@ -53,7 +61,14 @@ const Import = ({
     );
 
     if (importer.stage === stages.configure) return (
-      <Button variant="primary" className="w-100">Import</Button>
+      <Button
+        variant="primary"
+        className="w-100"
+        onClick={() => console.log(importer.assets)}
+        disabled={!importer.canImport()}
+      >
+        Import
+      </Button>
     );
   };
 

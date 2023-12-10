@@ -1,15 +1,61 @@
 
-import { useRef, useCallback, useEffect } from 'react';
+import { useRef, useCallback, useEffect, useState } from 'react';
 
 const AssetPreview = ({
-
+    spriteUrl,
+    dimensions
 }) => {
 
+    const [sprite, setSprite] = useState();
+
     const canvasRef = useRef();
+    
+    useEffect(() => {
 
-    const drawPreview = canvas => {
+        if (!spriteUrl) return setSprite(null);
 
-    };
+        const imageUrl = URL.createObjectURL(spriteUrl)
+
+        const image = new Image();
+        image.src = imageUrl;
+        image.onload = () => setSprite(image);
+
+        return () => URL.revokeObjectURL(imageUrl)
+    }, [
+        spriteUrl,
+        setSprite
+    ]);
+
+    const drawPreview = useCallback(canvas => {
+
+        if (!sprite || !dimensions) return;
+
+        //Setup
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const scale = 4;
+        ctx.translate(
+            (canvas.width / 2) - (dimensions.width * scale / 2), 
+            (canvas.height / 2) - (dimensions.height * scale / 2)
+        );
+        ctx.scale(scale, scale);
+
+        //Draw image
+        ctx.drawImage(
+            sprite,
+            dimensions.x, dimensions.y,
+            dimensions.width, dimensions.height,
+            0, 0,
+            dimensions.width, dimensions.height
+        );
+    }, [
+        sprite,
+        dimensions
+    ]);
+    useEffect(() => drawPreview(canvasRef.current), [drawPreview]);
 
     const resizeToParent = useCallback(() => {
 
