@@ -1,7 +1,7 @@
 
-import { Form, InputGroup, Container, Row, Col } from 'react-bootstrap';
+import { Form, InputGroup, Container, Row, Col, Badge } from 'react-bootstrap';
 
-import { slicers } from './useImport';
+import { slicers } from './slicers/slicer';
 
 import onlyNumbers from '../../lib/onlyNumbers';
 import SlicePreview from './SlicePreview';
@@ -32,10 +32,29 @@ const Slice = ({
                         onChange={e => importer.setSlicerByName(e.target.value)}
                         value={importer.slicer?.name}
                     >
-                        {/* <option value={slicers.prop.name}>Prop slicer</option>
-                        <option value={slicers.animatedProp.name}>Animated prop slicer</option> */}
+                        <option value={slicers.prop.name}>Prop slicer</option>
                         <option value={slicers.interior.name}>Interior slicer</option>
                     </Form.Select>
+                </Col>
+
+                <Col xs={12}>
+                    <InputGroup>
+                        <InputGroup.Text>Sheet tags</InputGroup.Text>
+                        <Form.Control
+                            type="text"
+                            placeholder="red, vector"
+                            onChange={e => importer.setTagString(e.target.value)}
+                            value={importer.tagString}
+                        />
+                    </InputGroup>
+                </Col>
+
+                <Col xs={12}>
+                    {
+                        importer.getTags().map((tag, index) => (
+                            <Badge key={index} bg="info" className="me-2">{tag}</Badge>
+                        ))
+                    }
                 </Col>
 
                 <Col xs={12} className="p-2"/>
@@ -111,12 +130,10 @@ const Slice = ({
                             onKeyDown={e => onlyNumbers(e)}
                             onChange={e => importer.dimensions.setColumns(e.target.value)}
                             value={importer.dimensions.columns}
-                            disabled={!importer.slicer.hsColumns}
+                            disabled={!importer.slicer.hasColumns}
                         />
                     </InputGroup>
                 </Col>
-
-                <Col xs={12} className="p-2"/>
 
                 <Col xs={12}>
                     <SlicePreview 

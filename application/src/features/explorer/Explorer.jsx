@@ -8,10 +8,7 @@ const Explorer = ({
     return (
         <div className="d-flex flex-column w-100" style={{height: "256px"}}>
 
-            <div className="d-flex justify-content-between align-items-center p-1 bg-secondary">
-                <p>
-                    {"/bunker/walls"}
-                </p>
+            <div className="d-flex justify-content-center align-items-center p-1 bg-secondary">
 
                 <InputGroup style={{width: "400px"}}>
                     <Form.Control
@@ -21,10 +18,6 @@ const Explorer = ({
                         {">_"}
                     </Button>
                 </InputGroup>
-
-                <Form.Check
-                    label="Current folder only"
-                />
             </div>
         </div>
     );

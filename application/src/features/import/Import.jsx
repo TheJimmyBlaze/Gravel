@@ -26,7 +26,7 @@ const Import = ({
 
     if (importer.stage === stages.slice) return <Slice importer={importer} />
     if (importer.stage === stages.configure) return (
-      importer.slicer.slices.map((_, index) => (
+      importer.slicer.getSlices(importer.dimensions).map((_, index) => (
         <Configure
           key={index}
           index={index}

@@ -40,8 +40,8 @@ const SlicePreview = ({
 
         const scale = 4;
         ctx.translate(
-            (canvas.width / 2) - (slicer.dimensions.width * scale / 2) - (dimensions.x * scale), 
-            (canvas.height / 2) - (slicer.dimensions.height * scale / 2) - (dimensions.y * scale)
+            (canvas.width / 2) - (sprite.width * scale / 2) - (dimensions.x * scale), 
+            (canvas.height / 2) - (sprite.height * scale / 2) - (dimensions.y * scale)
         );
         ctx.scale(scale, scale);
 

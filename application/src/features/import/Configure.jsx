@@ -10,6 +10,7 @@ const Configure = ({
     index,
     importer: {
         slicer,
+        getTags,
         getAssetConfig,
         updateAssetConfig,
         dimensions,
@@ -24,10 +25,24 @@ const Configure = ({
         let assetConfig = getAssetConfig(index);
 
         if (assetConfig == null) {
+
+            const slice = slicer.getSlices(dimensions)[index];
+            
+            const importTags = getTags();
+            const slicerTags = slicer.tags;
+            const sliceTags = slice.tags;
+
+            const tags = [
+                ...importTags,
+                ...slicerTags,
+                ...sliceTags
+            ].filter(tag => tag.trim());
+
             assetConfig = assetConfiguration(
                 dimensions.x,
                 dimensions.y,
-                slicer.slices[index]
+                slice,
+                tags.join(', ')
             );
         }
 
@@ -88,7 +103,7 @@ const Configure = ({
             <Row className="g-2">
 
                 <Col xs={12} className="text-end">
-                    Asset <span className="text-primary">{index + 1}</span>{` of ${slicer.slices.length}`}
+                    Asset <span className="text-primary">{index + 1}</span>{` of ${slicer.getSlices(dimensions).length}`}
                 </Col>
 
                 <Col xs={12}>

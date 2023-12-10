@@ -1,11 +1,12 @@
 
 const assetConfiguration = (
     x, y,
-    slice
+    slice,
+    tags
 ) => {
 
     let id = '';
-    let tagString = slice.tags.join(', ');
+    let tagString = tags;
     let frames = 1;
 
     const dimensions = {
