@@ -1,27 +1,94 @@
 
+import { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col, InputGroup, Form, Badge } from 'react-bootstrap';
+
 import onlyNumbers from '../../lib/onlyNumbers';
 import AssetPreview from './AssetPreview';
-import useConfig from './useConfig';
+import assetConfiguration from './assetConfiguration';
 
 const Configure = ({
     index,
-    importer
+    importer: {
+        slicer,
+        getAssetConfig,
+        updateAssetConfig,
+        dimensions,
+        spriteUrl
+    }
 }) => {
 
-    const config = useConfig(
-        importer.dimensions.x, importer.dimensions.y,
-        importer.slicer.slices[index],
-        importer.spriteUrl,
-        asset => importer.updateAsset(index, asset)
-    );
+    const [config, setConfig] = useState();
+
+    useEffect(() => {
+
+        let assetConfig = getAssetConfig(index);
+
+        if (assetConfig == null) {
+            assetConfig = assetConfiguration(
+                dimensions.x,
+                dimensions.y,
+                slicer.slices[index]
+            );
+        }
+
+        setConfig(assetConfig);
+    }, [
+        index,
+        slicer,
+        getAssetConfig,
+        dimensions,
+        setConfig
+    ]);
+
+    const setId = useCallback(e => {
+
+        updateAssetConfig(
+            index,
+            {
+                ...config,
+                id: e.target.value
+            }
+        );
+    }, [
+        index,
+        config,
+        updateAssetConfig
+    ]);
+
+    const setTagString = useCallback(e => {
+        updateAssetConfig(
+            index,
+            {
+                ...config,
+                tagString: e.target.value
+            }
+        );
+    }, [
+        index,
+        config,
+        updateAssetConfig
+    ]);
+
+    const setFrames = useCallback(e => {
+        updateAssetConfig(
+            index,
+            {
+                ...config,
+                frames: e.target.value
+            }
+        );
+    }, [
+        index,
+        config,
+        updateAssetConfig
+    ]);
 
     return (
         <Container className="mb-2">
             <Row className="g-2">
 
                 <Col xs={12} className="text-end">
-                    Asset <span className="text-primary">{index + 1}</span>{` of ${importer.slicer.slices.length}`}
+                    Asset <span className="text-primary">{index + 1}</span>{` of ${slicer.slices.length}`}
                 </Col>
 
                 <Col xs={12}>
@@ -30,9 +97,9 @@ const Configure = ({
                         <Form.Control
                             type="text"
                             placeholder="missing_id"
-                            onChange={e => config.setId(e.target.value)}
-                            value={config.id}
-                            isInvalid={!config.id.trim()}
+                            onChange={setId}
+                            value={config?.id}
+                            isInvalid={!config?.id.trim()}
                         />
                     </InputGroup>
                 </Col>
@@ -43,8 +110,8 @@ const Configure = ({
                         <Form.Control
                             type="text"
                             placeholder="red, vector"
-                            onChange={e => config.setTagString(e.target.value)}
-                            value={config.tagString}
+                            onChange={setTagString}
+                            value={config?.tagString}
                         />
                     </InputGroup>
                 </Col>
@@ -55,16 +122,16 @@ const Configure = ({
                         <Form.Control
                             type="number"
                             onKeyDown={e => onlyNumbers(e)}
-                            disabled={!importer.slicer.isAnimated}
-                            onChange={e => config.setFrames(e.target.value)}
-                            value={config.frames}
+                            disabled={!slicer.isAnimated}
+                            onChange={setFrames}
+                            value={config?.frames}
                         />
                     </InputGroup>
                 </Col>
 
                 <Col xs={12}>
                     {
-                        config.tags.map((tag, index) => (
+                        config?.getTags(config).map((tag, index) => (
                             <Badge key={index} bg="info" className="me-2">{tag}</Badge>
                         ))
                     }
@@ -72,8 +139,8 @@ const Configure = ({
 
                 <Col xs={12}>
                     <AssetPreview
-                        spriteUrl={importer.spriteUrl}
-                        dimensions={config.dimensions}
+                        spriteUrl={spriteUrl}
+                        dimensions={config?.dimensions}
                     />
                 </Col>
             </Row>

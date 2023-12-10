@@ -19,7 +19,7 @@ const useImport = (
 ) => {
 
     const [stage, setStage] = useState(stages.slice);
-    const goConfigure = () => setStage(stages.configure, setAssets({}));
+    const goConfigure = () => setStage(stages.configure);
     const goSlice = () => setStage(stages.slice);
 
     const [spriteUrl, setSpriteUrl] = useState(null);
@@ -27,15 +27,23 @@ const useImport = (
     const [slicer, setSlicer] = useState(null);
     const setSlicerByName = name => setSlicer(slicers.first(slicer => slicer.name === name));
 
-    const [assets, setAssets] = useState({});
-    const updateAsset = (index, asset) => {
-        assets[index] = asset;
-        setAssets({...assets});
-    }
+    const [assetConfigs, setAssetConfigs] = useState({});
+    
+    const getAssetConfig = useCallback(index => assetConfigs[index], [ assetConfigs ]);
+    const updateAssetConfig = useCallback((index, config) => {
+        
+        const newConfigs = {...assetConfigs};
+        newConfigs[index] = config;
+        setAssetConfigs(newConfigs);
+    }, [
+        assetConfigs, 
+        setAssetConfigs
+    ]);
+
     const canImport = useCallback(() => {
-        const invalidAssets = Object.values(assets).filter(asset => !asset.id.trim());
-        return Object.values(assets).length === slicer.slices.length && invalidAssets.length === 0;
-    }, [ assets ]);
+        const invalidAssets = Object.values(assetConfigs).filter(asset => !asset.id.trim());
+        return Object.values(assetConfigs).length === slicer.slices.length && invalidAssets.length === 0;
+    }, [assetConfigs]);
 
     const dimensions = useDimensions();
 
@@ -43,13 +51,13 @@ const useImport = (
 
         setSpriteUrl(null);
         setSlicer(slicers.interior);
-        setAssets({});
+        setAssetConfigs({});
 
         dimensions.clear();
     }, [
         setSpriteUrl,
         setSlicer,
-        setAssets,
+        setAssetConfigs,
         slicers,
     ]);
 
@@ -65,8 +73,9 @@ const useImport = (
         setSpriteUrl,
         slicer,
         setSlicerByName,
-        assets,
-        updateAsset,
+        assetConfigs,
+        getAssetConfig,
+        updateAssetConfig,
         dimensions,
         clear,
         canImport

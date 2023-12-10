@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { NavDropdown, Modal, Form, InputGroup, Button, Container, Row, Col } from 'react-bootstrap';
+import { NavDropdown, Modal, Button, Container, Row, Col } from 'react-bootstrap';
 
 import useImport, { stages } from './useImport';
 import Slice from './Slice';
@@ -64,7 +64,7 @@ const Import = ({
       <Button
         variant="primary"
         className="w-100"
-        onClick={() => console.log(importer.assets)}
+        onClick={() => console.log(importer.assetConfigs)}
         disabled={!importer.canImport()}
       >
         Import
