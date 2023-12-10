@@ -22,8 +22,6 @@ const useImport = (
     const goConfigure = () => setStage(stages.configure);
     const goSlice = () => setStage(stages.slice);
 
-    const [configurations, setConfigurations] = useState([]);
-
     const [spriteUrl, setSpriteUrl] = useState();
     const [slicer, setSlicer] = useState();
 

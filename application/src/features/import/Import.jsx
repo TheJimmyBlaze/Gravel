@@ -25,7 +25,7 @@ const Import = ({
   const renderStage = () => {
 
     if (importer.stage === stages.slice) return <Slice importer={importer} />
-    if (importer.stage === stages.configure) return <Configure importer={importer} />
+    if (importer.stage === stages.configure) return <Configure index={0} importer={importer} />
   };
 
   const renderBackButton = () => {
