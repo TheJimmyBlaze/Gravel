@@ -1,15 +1,15 @@
 
 import {makeSlice} from './slicer';
 
-const propSlicer = () =>  {
+const animatedSlicer = () =>  {
 
-    const name = 'slicer_prop';
-    const tags = ['prop'];
+    const name = 'slicer_animated';
+    const tags = ['animated'];
 
     const hasDimensions = true;
     const hasRows = true;
-    const hasColumns = true;
-    const isAnimated = false;
+    const hasColumns = false;
+    const isAnimated = true;
 
     const getSlices = ({
         x,
@@ -17,23 +17,20 @@ const propSlicer = () =>  {
         width,
         height,
         rows,
-        columns,
     }) => {
 
         const slices = [];
         for (let row = 0; row < rows; row++) {
-            for (let column = 0; column < columns; column++) {
 
-                const slice = makeSlice(
-                    `prop_${row}_${column}`,
-                    [],
-                    x + column * width,
-                    y + row * height,
-                    width,
-                    height
-                );
-                slices.push(slice);
-            }
+            const slice = makeSlice(
+                `animated_${row}`,
+                [],
+                x,
+                y + row * width,
+                width,
+                height
+            );
+            slices.push(slice);
         }
 
         return slices;
@@ -63,4 +60,4 @@ const propSlicer = () =>  {
     };
 };
 
-export default propSlicer;
+export default animatedSlicer;

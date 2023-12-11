@@ -54,7 +54,7 @@ const useImport = (
 
         setSpriteUrl(null);
         setTagString('');
-        setSlicer(slicers.interior);
+        setSlicer(slicers.prop);
         setAssetConfigs({});
 
         dimensions.clear();

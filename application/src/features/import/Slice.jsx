@@ -33,6 +33,8 @@ const Slice = ({
                         value={importer.slicer?.name}
                     >
                         <option value={slicers.prop.name}>Prop slicer</option>
+                        <option value={slicers.animated.name}>Animated slicer</option>
+                        <option value={slicers.floor.name}>Floor slicer</option>
                         <option value={slicers.interior.name}>Interior slicer</option>
                     </Form.Select>
                 </Col>

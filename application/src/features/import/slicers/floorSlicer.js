@@ -1,10 +1,10 @@
 
 import {makeSlice} from './slicer';
 
-const propSlicer = () =>  {
+const floorSlicer = () =>  {
 
-    const name = 'slicer_prop';
-    const tags = ['prop'];
+    const name = 'slicer_floor';
+    const tags = ['floor'];
 
     const hasDimensions = true;
     const hasRows = true;
@@ -25,7 +25,7 @@ const propSlicer = () =>  {
             for (let column = 0; column < columns; column++) {
 
                 const slice = makeSlice(
-                    `prop_${row}_${column}`,
+                    `floor_${row}_${column}`,
                     [],
                     x + column * width,
                     y + row * height,
@@ -63,4 +63,4 @@ const propSlicer = () =>  {
     };
 };
 
-export default propSlicer;
+export default floorSlicer;
