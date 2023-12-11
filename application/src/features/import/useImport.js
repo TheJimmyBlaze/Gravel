@@ -15,7 +15,7 @@ const useImport = (
 
     const [stage, setStage] = useState(stages.slice);
     const goConfigure = () => setStage(stages.configure);
-    const goSlice = () => setStage(stages.slice);
+    const goSlice = () => { setStage(stages.slice); setAssetConfigs({}); };
 
     const [spriteUrl, setSpriteUrl] = useState(null);
 

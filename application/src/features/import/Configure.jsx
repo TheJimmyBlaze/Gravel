@@ -89,7 +89,7 @@ const Configure = ({
             index,
             {
                 ...config,
-                frames: e.target.value
+                frames: Math.max(1, +e.target.value)
             }
         );
     }, [

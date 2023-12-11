@@ -23,12 +23,12 @@ const useDimensions = (
     ]);
 
     return {
-        x, setX: x => setX(+x),
-        y, setY: y => setY(+y),
-        width, setWidth: width => setWidth(+width),
-        height, setHeight: height => setHeight(+height),
-        rows, setRows: rows => setRows(+rows),
-        columns, setColumns: columns => setColumns(+columns),
+        x, setX: x => setX(Math.max(0, +x)),
+        y, setY: y => setY(Math.max(0, +y)),
+        width, setWidth: width => setWidth(Math.max(1, +width)),
+        height, setHeight: height => setHeight(Math.max(1, +height)),
+        rows, setRows: rows => setRows(Math.max(1, +rows)),
+        columns, setColumns: columns => setColumns(Math.max(1, +columns)),
         clear
     };
 };
