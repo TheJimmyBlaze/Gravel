@@ -156,6 +156,7 @@ const Configure = ({
                     <AssetPreview
                         spriteUrl={spriteUrl}
                         dimensions={config?.dimensions}
+                        frames={config?.frames}
                     />
                 </Col>
             </Row>

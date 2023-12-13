@@ -3,7 +3,9 @@ import { useRef, useCallback, useEffect, useState } from 'react';
 
 const AssetPreview = ({
     spriteUrl,
-    dimensions
+    dimensions,
+    frames = 1,
+    fps = 8
 }) => {
 
     const [sprite, setSprite] = useState();
@@ -26,36 +28,52 @@ const AssetPreview = ({
         setSprite
     ]);
 
-    const drawPreview = useCallback(canvas => {
+    const frameInterval = 1000 / fps;
+
+    let currentFrame = 0;
+    let lastFrameChange = 0;
+
+    const drawPreview = useCallback(timestamp => {
 
         if (!sprite || !dimensions) return;
 
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
         //Setup
         const ctx = canvas.getContext('2d');
-        ctx.imageSmoothingEnabled = false;
-
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const scale = 4;
-        ctx.translate(
-            (canvas.width / 2) - (dimensions.width * scale / 2), 
-            (canvas.height / 2) - (dimensions.height * scale / 2)
-        );
-        ctx.scale(scale, scale);
 
         //Draw image
         ctx.drawImage(
             sprite,
-            dimensions.x, dimensions.y,
+            dimensions.x + (dimensions.width * currentFrame), 
+            dimensions.y,
             dimensions.width, dimensions.height,
             0, 0,
             dimensions.width, dimensions.height
         );
+
+        if (frames > 1) {
+
+            if (lastFrameChange + frameInterval < timestamp) {
+
+                currentFrame++;
+                if (currentFrame >= frames) {
+                    currentFrame = 0;
+                }
+            
+                lastFrameChange = timestamp;
+            }
+
+            requestAnimationFrame(drawPreview);
+        }
     }, [
         sprite,
-        dimensions
+        dimensions,
+        frames
     ]);
-    useEffect(() => drawPreview(canvasRef.current), [drawPreview]);
+    useEffect(() => drawPreview(0), [drawPreview]);
 
     const resizeToParent = useCallback(() => {
 
@@ -69,9 +87,21 @@ const AssetPreview = ({
         canvas.height = parentHeight;
         canvas.style = `width:${parentWidth}px;height:${parentHeight}px;`;
 
-        drawPreview(canvas);
+        //Setup
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
+
+        const scale = 4;
+        ctx.translate(
+            (canvas.width / 2) - (dimensions?.width * scale / 2), 
+            (canvas.height / 2) - (dimensions?.height * scale / 2)
+        );
+        ctx.scale(scale, scale);
+
+        drawPreview(0);
     }, [
         canvasRef,
+        dimensions,
         drawPreview
     ]);
 
