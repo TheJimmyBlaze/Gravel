@@ -28,8 +28,6 @@ const AssetPreview = ({
         setSprite
     ]);
 
-    const frameInterval = 1000 / fps;
-
     let currentFrame = 0;
     let lastFrameChange = 0;
 
@@ -56,6 +54,7 @@ const AssetPreview = ({
 
         if (frames > 1) {
 
+            const frameInterval = 1000 / fps;
             if (lastFrameChange + frameInterval < timestamp) {
 
                 currentFrame++;
@@ -71,9 +70,10 @@ const AssetPreview = ({
     }, [
         sprite,
         dimensions,
-        frames
+        frames,
+        fps
     ]);
-    useEffect(() => drawPreview(0), [drawPreview]);
+    drawPreview(0);
 
     const resizeToParent = useCallback(() => {
 

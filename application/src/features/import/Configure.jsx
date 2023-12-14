@@ -84,6 +84,20 @@ const Configure = ({
         updateAssetConfig
     ]);
 
+    const setFps = useCallback(e => {
+        updateAssetConfig(
+            index,
+            {
+                ...config,
+                fps: Math.max(1, +e.target.value)
+            }
+        );
+    }, [
+        index,
+        config,
+        updateAssetConfig
+    ]);
+
     const setFrames = useCallback(e => {
         updateAssetConfig(
             index,
@@ -106,7 +120,7 @@ const Configure = ({
                     Asset <span className="text-primary">{index + 1}</span>{` of ${slicer.getSlices(dimensions).length}`}
                 </Col>
 
-                <Col xs={12}>
+                <Col xs={9}>
                     <InputGroup>
                         <InputGroup.Text>Id</InputGroup.Text>
                         <Form.Control
@@ -115,6 +129,19 @@ const Configure = ({
                             onChange={setId}
                             value={config?.id}
                             isInvalid={!config?.id.trim()}
+                        />
+                    </InputGroup>
+                </Col>
+
+                <Col xs={3}>
+                    <InputGroup>
+                        <InputGroup.Text>Frames</InputGroup.Text>
+                        <Form.Control
+                            type="number"
+                            onKeyDown={e => onlyNumbers(e)}
+                            disabled={!slicer.isAnimated}
+                            onChange={setFrames}
+                            value={config?.frames}
                         />
                     </InputGroup>
                 </Col>
@@ -133,13 +160,12 @@ const Configure = ({
 
                 <Col xs={3}>
                     <InputGroup>
-                        <InputGroup.Text>Frames</InputGroup.Text>
+                        <InputGroup.Text>FPS</InputGroup.Text>
                         <Form.Control
                             type="number"
                             onKeyDown={e => onlyNumbers(e)}
-                            disabled={!slicer.isAnimated}
-                            onChange={setFrames}
-                            value={config?.frames}
+                            onChange={setFps}
+                            value={config?.fps}
                         />
                     </InputGroup>
                 </Col>
@@ -157,6 +183,7 @@ const Configure = ({
                         spriteUrl={spriteUrl}
                         dimensions={config?.dimensions}
                         frames={config?.frames}
+                        fps={config?.fps}
                     />
                 </Col>
             </Row>

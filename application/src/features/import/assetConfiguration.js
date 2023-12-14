@@ -8,6 +8,7 @@ const assetConfiguration = (
     let id = '';
     let tagString = tags;
     let frames = 1;
+    let fps = 8;
 
     const dimensions = {
         x: x + slice.x,
@@ -20,9 +21,10 @@ const assetConfiguration = (
 
     return {
         id,
+        dimensions,
         tagString,
         frames,
-        dimensions,
+        fps,
         getTags
     };
 };
