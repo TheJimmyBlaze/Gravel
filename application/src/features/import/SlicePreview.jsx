@@ -86,7 +86,7 @@ const SlicePreview = ({
 
     return (
 
-        <div style={{height: '320px'}} className="d-flex flex-grow-1 bg-dark">
+        <div style={{height: '320px'}} className="d-flex flex-grow-1 bg-dark rounded">
             <canvas ref={canvasRef}/>
         </div>
     );
